@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="hu" ng-app="basic_app">
+	<head>
+		<meta charset="utf-8">
+		<title>Rental</title>
+		<link  rel="stylesheet" href="css/normalize.css" type="text/css">
+		<link  rel="stylesheet" href="library/bootstrap_3.1.1/css/bootstrap.min.css" type="text/css">
+		<link  rel="stylesheet/less" href="css/design.less" type="text/css">
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
+		
+		<script src="library/angular/angular.js" type="text/javascript"></script>
+		<script src="library/angular/angular-resource.js" type="text/javascript"></script>
+		<script src="library/angular/angular-md5.js" type="text/javascript"></script>
+		
+		<script src="js/services/userServices.js" type="text/javascript"></script>
+		
+		<script src="js/app.js" type="text/javascript"></script>
+	<!--	<script src="js/controllers/loginCtrl.js" type="text/javascript"></script>
+		<script src="js/controllers/registrationCtrl.js" type="text/javascript"></script>-->
+	</head>
+	<body>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<button class="btn btn-primary" type="button" ng-click="loginForm()" ng-show="!showLoginForm && !showRegForm && !isLoggedIn">Bejelentkezés</button>
+				<button class="btn btn-primary" type="button" ng-click="regForm()" ng-show="!showRegForm && !showLoginForm && !isLoggedIn">Regisztráció</button>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<form ng-show="showLoginForm" novalidate>
+					<div class="row">
+						<label>Felhasználó név:</label>
+						<input type="text" name="username" ng-model="user.username" required maxlength="20">
+					</div>
+					<div class="row">
+						<label>Jelszó:</label>
+						<input type="password" name="password" ng-model="user.password" required maxlength="20">
+					</div>
+					<div class="row">
+						<button class="btn btn-primary" type="button" ng-click="login();loginForm();">Bejelentkezés</button>
+						<button class="btn btn-default" type="button" ng-click="loginForm()">Mégse</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<form ng-show="showRegForm">
+					<div class="row">
+						<label>Felhasználó név:</label>
+						<input type="text" name="username" ng-model="newUser.username" required maxlength="20">
+					</div>
+					<div class="row">
+						<label>Teljes név:</label>
+						<input type="text" name="fullname" ng-model="newUser.fullname" required maxlength="40">
+					</div>
+					<div class="row">
+						<label>E-mail cím:</label>
+						<input type="text" name="email" ng-model="newUser.email" required maxlength="40">
+					</div>
+					<div class="row">
+						<label>Jelszó:</label>
+						<input type="password" name="password" ng-model="newUser.password" required maxlength="20">
+					</div>
+					<div class="row">
+						<button class="btn btn-primary" type="button" ng-click="registration();regForm();">Regisztráció</button>
+						<button class="btn btn-default" type="button" ng-click="regForm()">Mégse</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6" ng-show="isLoggedIn">
+				<div class="row">
+					<span>Welcome {{loggedUser.username}}!</span>
+				</div>
+				<div class="row">
+					<span>List of users:</span>
+				</div>
+				<div class="row">
+					<ul>
+						<li ng-repeat="user in users">{{user.fullName}}, {{user.email}}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+	</body>
+</html>
