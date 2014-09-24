@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.basic.model.User2;
+import com.basic.model.User;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -19,23 +19,23 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	@Transactional
-	public List<User2> getAllUsers() {
+	public List<User> getAllUsers() {
 		@SuppressWarnings("unchecked")
-		List<User2> users = entityManager.createQuery("SELECT u FROM User2 u Order by id Asc").getResultList();
+		List<User> users = entityManager.createQuery("SELECT u FROM User u Order by id Asc").getResultList();
 		return users;
 	}
 	
 	
 	@Override
 	@Transactional
-	public String saveUser(User2 user){
+	public String saveUser(User user){
 		entityManager.persist(user);
 		entityManager.flush();
 		return "OK";
 	}
 	
 	private boolean userExist(String userName) {
-		User2 user = (User2) entityManager.createQuery("Select u From User2 as u Where u.userName = :userName")
+		User user = (User) entityManager.createQuery("Select u From User as u Where u.userName = :userName")
 				.setParameter("userName",userName).getSingleResult();
 		if(user != null) {
 			return true;
@@ -46,9 +46,9 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	@Transactional
-	public User2 getUser(String userName, String password){
+	public User getUser(String userName, String password){
 		try{
-			User2 user = (User2) entityManager.createQuery("Select u From User2 as u Where u.userName = :userName and u.password = :password")
+			User user = (User) entityManager.createQuery("Select u From User as u Where u.userName = :userName and u.password = :password")
 			.setParameter("userName",userName)
 			.setParameter("password", password)
 			.getSingleResult();

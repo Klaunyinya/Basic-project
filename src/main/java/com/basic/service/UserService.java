@@ -2,13 +2,13 @@ package com.basic.service;
 
 import java.util.List;
 
-import com.basic.model.User2;
+import com.basic.model.User;
 
 public interface UserService {
 	
-	public List<User2> getAllUsers();
+	public List<User> getAllUsers();
 	
-	public String saveUser(User2 user);
+	public String saveUser(User user);
 
-	public User2 getUser(String userName, String password);
+	public User getUser(String userName, String password);
 }

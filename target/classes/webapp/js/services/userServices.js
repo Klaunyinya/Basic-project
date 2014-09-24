@@ -24,7 +24,6 @@ services.factory('userServices', function($http) {
 	};
 	
 	user.saveUser = function(user) {
-		console.log(user.password);
 		return $http({
 			url : 'api/registrationRequest',
 			data : {
