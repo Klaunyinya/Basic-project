@@ -28,7 +28,6 @@ basic_app.run(function ($rootScope, md5, userServices) {
 	
 	$rootScope.login = function() {
 			$rootScope.user.password = md5.createHash($rootScope.user.password || '');
-			console.log("?");
 			userServices.getUser($rootScope.user).success(function(result) {
 				if(result) {
 					$rootScope.loggedUser.id = result.id;
@@ -37,7 +36,7 @@ basic_app.run(function ($rootScope, md5, userServices) {
 					userServices.getAllUsers().success(function(userList) {
 						$rootScope.users = userList;
 					});
-					alert("Sikeres bejelentkezés!");
+					//alert("Sikeres bejelentkezés!");
 				} else {
 					alert("Hiba történt bejelentkezés közben!");
 				}
@@ -46,6 +45,9 @@ basic_app.run(function ($rootScope, md5, userServices) {
 		
 		$rootScope.logout = function() {
 			$rootScope.loggedUser = null;
+			$rootScope.newUser = {};
+			$rootScope.user = {};
+			$rootScope.users = [];
 			$rootScope.isLoggedIn = false;
 		};
 			

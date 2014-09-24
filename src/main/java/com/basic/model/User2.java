@@ -15,7 +15,7 @@ public class User2 implements Serializable {
 	
 	private static final Long serialVersionUID = 1L;
 	
-	@SequenceGenerator(name="User2", sequenceName="USERS_SEQ2")
+	@SequenceGenerator(name="User2", sequenceName="USERS2_SEQ")
 	@Id @GeneratedValue(generator="User2")
 	private Long id;
 	

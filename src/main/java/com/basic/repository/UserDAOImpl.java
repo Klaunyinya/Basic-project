@@ -29,21 +29,9 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	@Transactional
 	public String saveUser(User2 user){
-		System.out.println("*********" + user.getFullName() + "**************");
-		//boolean userExists = userExist(user.getUserName());
-		//if(!userExists) {
-			entityManager.persist(user);
-			entityManager.flush();
-		//} else {
-		//	return "NOT OK";
-		//}
-		boolean userCreated = userExist(user.getUserName());
-		if(userCreated) {
-			return "OK";
-		} else {
-			return "NOT OK";
-		}
-		
+		entityManager.persist(user);
+		entityManager.flush();
+		return "OK";
 	}
 	
 	private boolean userExist(String userName) {
